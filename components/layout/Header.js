@@ -15,16 +15,20 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
+  useColorMode,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
   CloseIcon,
   ChevronDownIcon,
   ChevronRightIcon,
+  MoonIcon,
+  SunIcon,
 } from "@chakra-ui/icons";
 
 export default function Header() {
   const { isOpen, onToggle } = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <Box>
@@ -77,6 +81,13 @@ export default function Header() {
           direction={"row"}
           spacing={6}
         >
+          <IconButton
+            variant="unstyled"
+            aria-label="toggle dark mode"
+            icon={colorMode == "dark" ? <SunIcon /> : <MoonIcon />}
+            onClick={toggleColorMode}
+          />
+
           <NextLink href="/signin">
             <Button
               as={"a"}
